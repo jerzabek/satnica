@@ -43,6 +43,15 @@ p {
   font-size: 1.5rem;
 }
 
+.src {
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+
+.src:hover {
+  text-decoration: underline;
+}
+
 .zaposlenik{
   border: 4px solid #afafaf;
   border-radius: 10px;
