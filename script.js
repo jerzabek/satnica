@@ -138,20 +138,12 @@ function add(){
     var brZaposlenika = document.getElementById('zaposlenici-grupa').childElementCount;
 
     for(var i = 0; i < brZaposlenika; i++){
-      // var aid = 'checkbox-broj-' + document.getElementById('zaposlenici-grupa').childNodes[i+1].id.substr(
-      //   document.getElementById('zaposlenici-grupa').childNodes[i+1].id.length - 1);
       var checkCount = 0;
-      // this.getElementsByTagName('input')[0]
       if(this.getElementsByTagName('input')[0].checked === true){
         checkCount += 1;
       }
 
-      if(checkCount < 5){
-        drawVisualization();
-      }else {
-        alert('Dozvoljeno je maksimalno 5 zaposlenika na grafu radi preglednosti.');
-        drawVisualization();
-      }
+      drawVisualization();
     }
   }
 

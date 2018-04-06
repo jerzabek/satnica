@@ -39,8 +39,6 @@ function drawVisualization() {
   for(var i = 0; i < pravi.length; i++){
     temp = [];
 
-    // temp.push(pravi[i].getElementsByTagName('h4')[0].innerHTML);
-
     var tjmj = pravi[i].childNodes[2].className
 
     if(tjmj.includes('tjedna-satnica')){
