@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
 body, html, .body-wrapper{
   --bgcolor: #e2e2e2;
@@ -52,17 +53,24 @@ p {
   text-decoration: underline;
 }
 
+.zaposlenici-grupa {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .zaposlenik{
   border: 4px solid #afafaf;
   border-radius: 10px;
   margin: 10px;
+  padding: 8px;
   display: inline-block;
   background-color: #d4d4d4;
 }
 
 .zaposlenik:hover {
   /* outline: 2px solid #ffdf44; */
-  box-shadow: 0 0 0pt 1pt red;
+  /* box-shadow: 0 0 0pt 1pt red; */
   cursor: pointer;
 }
 
@@ -76,7 +84,11 @@ p {
 }
 
 .tjedna-satnica::before {
-  content: 'Tjedna satnica: ';
+  content: 'Odrađeno u tjednu: ';
+}
+
+.mjesecna-satnica::before {
+  content: 'Odrađeno u mjesecu: '
 }
 
 .visak-sati::after {
@@ -87,7 +99,7 @@ p {
   content: ' sat(i) manjka';
 }
 
-.dnevna-satnica::after, .tjedna-satnica::after  {
+.dnevna-satnica::after, .tjedna-satnica::after, .mjesecna-satnica::after  {
   content: ' sati';
 }
 
@@ -111,6 +123,38 @@ p {
   border-left: 3px solid #afafaf;
 }
 
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+.radiolabel {
+  color: #73B9C9;
+  display: inline-block;
+  cursor: pointer;
+  height: ;
+  font-weight: bold;
+  padding: 5px 20px;
+}
+
+input[type=radio]:checked + .radiolabel{
+  color: white;
+  background: #73B9C9;
+  height: 20px;
+}
+
+.radiolabel + input[type=radio] + .radiolabel {
+  border-left: 4px solid #73B9C9;
+}
+.radio-group {
+  border: 2px solid #73B9C9;
+  display: inline-block;
+  margin: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 .addbutton {
   margin: 20px;
   margin-left: 0;
@@ -124,6 +168,10 @@ p {
   border-radius: 10px;
   outline: none;
   box-shadow: 0px 4px 0px #73B9C9;
+}
+
+#tjedni-field {
+  margin-top: 0px;
 }
 
 .addbutton:active {
@@ -159,13 +207,14 @@ input 				{
 input:focus 		{ outline:none; }
 
 /* LABEL ======================================= */
-label 				 {
+.inputlabel 				 {
   color:black;
   font-size:18px;
   font-weight:normal;
   position:absolute;
   pointer-events:none;
   left:5px;
+  font-family: 'Raleway', sans-serif;
   top:10px;
   transition:0.2s ease all;
   -moz-transition:0.2s ease all;
@@ -173,7 +222,7 @@ label 				 {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label 		{
+input:focus ~ .inputlabel, input:valid ~ .inputlabel 		{
   top:-20px;
   font-size:14px;
   color:#0025e2;

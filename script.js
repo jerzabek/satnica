@@ -1,24 +1,34 @@
 window.onload=function(){
-  var fack1 = document.getElementById('ime-polje');
-  fack1.addEventListener('keypress', function(event) {
+  var polje1 = document.getElementById('ime-polje');
+  polje1.addEventListener('keypress', function(event) {
   	if (event.keyCode == 13) {
   		add();
   	}
   });
 
-  var fack2 = document.getElementById('tjedni-polje');
-  fack2.addEventListener('keypress', function(event) {
+  var polje2 = document.getElementById('tjedni-polje');
+  polje2.addEventListener('keypress', function(event) {
   	if (event.keyCode == 13) {
   		add();
   	}
   });
 
-  var fack3 = document.getElementById('dnevni-polje');
-  fack3.addEventListener('keypress', function(event) {
+  var polje3 = document.getElementById('dnevni-polje');
+  polje3.addEventListener('keypress', function(event) {
   	if (event.keyCode == 13) {
   		add();
   	}
   });
+
+  document.getElementById('tjedno').onclick = function() {
+    var label = document.getElementById('labelin');
+    label.innerHTML = 'Broj odrađenih sati u tjednu'
+  }
+
+  document.getElementById('mjesecno').onclick = function() {
+    var label = document.getElementById('labelin');
+    label.innerHTML = 'Broj odrađenih sati u mjesecu'
+  }
 }
 
 function add(){
@@ -48,12 +58,26 @@ function add(){
   p1.innerHTML = dnevnofield.value;
 
   var p2 = document.createElement('p');
-  p2.setAttribute('class', 'tjedna-satnica');
+  var tj = document.getElementById('tjedno')
+  var mj = document.getElementById('mjesecno')
+  var str = ''
+
+  if(tj.checked){
+    str = 'tjedna-satnica'
+  }else if(mj.checked){
+    str = 'mjesecna-satnica'
+  }
+
+  p2.setAttribute('class', str);
   p2.innerHTML = tjednofield.value;
 
   var p3 = document.createElement('p');
   p3.setAttribute('class', 'delta');
-  p3.innerHTML = parseInt(dnevnofield.value)*5 - parseInt(tjednofield.value);
+  if(tj.checked){
+    p3.innerHTML = parseInt(dnevnofield.value)*5 - parseInt(tjednofield.value);
+  }else if(mj.checked){
+    p3.innerHTML = parseInt(dnevnofield.value)*5*4 - parseInt(tjednofield.value);
+  }
 
   if(parseInt(p3.innerHTML) < 0){
     p3.className += ' visak-sati';
@@ -104,7 +128,74 @@ function add(){
   novi.appendChild(p2);
   novi.appendChild(p3);
   novi.appendChild(divv);
+  novi.onclick = function() {
+    cb.checked = !cb.checked;
 
+    if(this.checked === false){
+      drawVisualization();
+      return;
+    }
+    var brZaposlenika = document.getElementById('zaposlenici-grupa').childElementCount;
+
+    for(var i = 0; i < brZaposlenika; i++){
+      // var aid = 'checkbox-broj-' + document.getElementById('zaposlenici-grupa').childNodes[i+1].id.substr(
+      //   document.getElementById('zaposlenici-grupa').childNodes[i+1].id.length - 1);
+      var checkCount = 0;
+      // this.getElementsByTagName('input')[0]
+      if(this.getElementsByTagName('input')[0].checked === true){
+        checkCount += 1;
+      }
+
+      if(checkCount < 5){
+        drawVisualization();
+      }else {
+        alert('Dozvoljeno je maksimalno 5 zaposlenika na grafu radi preglednosti.');
+        drawVisualization();
+      }
+    }
+  }
+
+  var delet = document.createElement('button')
+  delet.setAttribute('type', 'button')
+  delet.setAttribute('name', 'delete')
+  delet.setAttribute('class', 'addbutton')
+  delet.innerHTML = 'Ukloni'
+  delet.onclick = function() {
+    this.parentNode.parentNode.removeChild(this.parentNode);
+    drawVisualization();
+  }
+
+  var urd = document.createElement('button')
+  urd.setAttribute('type', 'button')
+  urd.setAttribute('name', 'urde')
+  urd.setAttribute('class', 'addbutton')
+  urd.innerHTML = 'Uredi'
+  urd.onclick = function() {
+    var imefield = document.getElementById('ime-polje');
+    var dnevnofield = document.getElementById('dnevni-polje');
+    var tjednofield = document.getElementById('tjedni-polje');
+
+    imefield.value = this.parentNode.getElementsByTagName('h4')[0].innerHTML
+    dnevnofield.value = this.parentNode.getElementsByTagName('p')[0].innerHTML
+
+    var mjtj = this.parentNode.getElementsByTagName('p')[1];
+    tjednofield.value = mjtj.innerHTML
+
+    var tj = document.getElementById('tjedno')
+    var mj = document.getElementById('mjesecno')
+
+    if(mjtj.className.includes('tjedna-satnica')){
+      tj.checked = true
+    }else if(mjtj.className.includes('mjesecna-satnica')){
+      mj.checked = true;
+    }
+    this.parentNode.parentNode.removeChild(this.parentNode);
+    // drawVisualization();
+  }
+
+  novi.appendChild(document.createElement('br'))
+  novi.appendChild(delet);
+  novi.appendChild(urd)
   zaposlenici.appendChild(novi);
 
   imefield.value = '';
