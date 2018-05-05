@@ -74,9 +74,25 @@ p {
   cursor: pointer;
 }
 
-.ime-zaposlenika, .dnevna-satnica, .tjedna-satnica, .delta {
+.ime-zaposlenika, .dnevna-satnica, .tjedna-satnica, .delta, .placa, .dani-u-tjednu{
   margin: 5px;
   padding: 5px;
+}
+
+.dani-u-tjednu::before {
+  content: 'Radi ';
+}
+
+.dani-u-tjednu::after {
+  content: ' dana u tjednu.'
+}
+
+.placa::before {
+  content: 'Plaća: '
+}
+
+.placa::after {
+  content: ' HRK/satu';
 }
 
 .dnevna-satnica::before {
@@ -91,15 +107,23 @@ p {
   content: 'Odrađeno u mjesecu: '
 }
 
-.visak-sati::after {
-  content: ' sat(a) viška';
+.delta::before {
+  content: 'Odrađeno: ';
+}
+
+.delta::after {
+  content: ' sati';
+}
+
+/* .visak-sati::after {
+  content: ' sat(a) prekovremena';
 }
 
 .manjak-sati::after {
-  content: ' sat(i) manjka';
+  content: ' sat(i) manjka'; */
 }
 
-.dnevna-satnica::after, .tjedna-satnica::after, .mjesecna-satnica::after  {
+.dnevna-satnica::after, .tjedna-satnica::after, .mjesecna-satnica::after   {
   content: ' sati';
 }
 
@@ -144,8 +168,13 @@ input[type=radio]:checked + .radiolabel{
   height: 20px;
 }
 
+#grafgr {
+  margin: 5px;
+}
+
 .radiolabel + input[type=radio] + .radiolabel {
   border-left: 4px solid #73B9C9;
+  height: 20px;
 }
 .radio-group {
   border: 2px solid #73B9C9;
@@ -158,6 +187,7 @@ input[type=radio]:checked + .radiolabel{
 .addbutton {
   margin: 20px;
   margin-left: 0;
+  font-family: 'Lato', sans-serif;
   position: relative;
   border: 0;
   padding: 15px 25px;
@@ -170,10 +200,6 @@ input[type=radio]:checked + .radiolabel{
   box-shadow: 0px 4px 0px #73B9C9;
 }
 
-#tjedni-field {
-  margin-top: 0px;
-}
-
 .addbutton:active {
     top: 4px;
     outline: none;
@@ -182,10 +208,10 @@ input[type=radio]:checked + .radiolabel{
 
 .ggraph {
   padding: 10px;
-  margin-top: -20px;
+  margin-top: -40px;
   border-left: 3px solid #afafaf;
   width: 65%;
-  height: 300px;
+  height: 450px;
 }
 
 /* Google material design input*/

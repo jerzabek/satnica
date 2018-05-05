@@ -32,20 +32,38 @@
 					<label class="inputlabel">Dnevna satnica</label>
 				</div>
 
-				<div class="radio-group">
+				<!-- <div class="radio-group">
 					<input type="radio" id="tjedno" name="selector" checked><label class="radiolabel" for="tjedno">Tjedno</label><input type="radio" id="mjesecno" name="selector"><label class="radiolabel" for="mjesecno">Mjesečno</label>
+				</div> -->
+
+				<div class="group" id="odstupanja-field">
+					<input type="text" id="odstupanja-polje" onaction="add()" required>
+					<span class="bar"></span>
+					<label class="inputlabel">Odstupanja<span style="font-weight: 800;">*</span></label>
 				</div>
 
 				<div class="group" id="tjedni-field">
 					<input type="text" id="tjedni-polje" onaction="add()" required>
 					<span class="bar"></span>
-					<label id="labelin" class="inputlabel">Broj odrađenih sati u tjednu</label>
+					<label id="labelin" class="inputlabel">Broj radnih dana u tjednu</label>
+				</div>
+
+				<div class="group" id="placa-field">
+					<input type="text" id="placa-polje" onaction="add()" required>
+					<span class="bar"></span>
+					<label class="inputlabel">Cijena satnice u HRK</label>
 				</div>
 
 				<button type="button" name="add" onclick="add()" class="addbutton">Dodaj</button>
 				<!-- <button type="button" name="draw" onclick="drawVisualization()" class="addbutton">Refresh graph</button> -->
+				<p style="font-weight: 800; font-size: 0.6rem;">* ukupan zbroj odbijenih sati i prekovremenih</p>
 			</div>
-			<div class="ggraph" id="ggraph"></div>
+			<div class="ggraph">
+				<div class="radio-group" id="grafgr">
+					<input type="radio" id="placa" name="graf" checked><label id="rl1" class="radiolabel" for="placa">Plaće</label><input type="radio" id="satnice" name="graf"><label id="rl2" class="radiolabel" for="satnice">Satnice</label>
+				</div>
+				<div id="ggraph"></div>
+			</div>
 		</div>
 		<div class="zaposlenici-grupa" id="zaposlenici-grupa">
 		</div>
