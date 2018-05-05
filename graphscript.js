@@ -142,7 +142,9 @@ function satnice(){
 
   var data = google.visualization.arrayToDataTable(mydata);
   var rrr = min - 0.1*(max - min)
-
+  if(max === min){
+    rrr = parseInt(0.9*min)
+  }
   var options = {
     height: 400,
     width: '100%',
