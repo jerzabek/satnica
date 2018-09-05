@@ -19,6 +19,7 @@ class App extends Component {
     this.handleTjednoChange = this.handleTjednoChange.bind(this)
     this.handleOdstupanjaChange = this.handleOdstupanjaChange.bind(this)
     this.handleCijenaChange = this.handleCijenaChange.bind(this)
+    this.wowzers = this.wowzers.bind(this)
   }
 
   handleNameChange(e) {
@@ -94,19 +95,42 @@ class App extends Component {
             <input type="submit" className="btn btn-success"></input>
           </form>
         </div>
+        <hr className="w-100 "></hr>
         <div className="employees text-center">
-          {this.state.employees.map((employee, index) =>{
-            return (<Employee
-              name={employee.name}
-              cijena={employee.cijena}
-              tjedno={employee.tjedno}
-              odstupanja={employee.odstupanja}
-              satnica={employee.satnica}
-              key={index} />)
-          })}
+          {
+             this.wowzers()
+          }
         </div>
+        <hr className="w-100 "></hr>
       </div>
     );
+  }
+
+  wowzers(){
+    if(this.state.employees.length === 0){
+      return (
+        <h2>nema zaposlenika</h2>
+      )
+    }else{
+      return(
+        this.state.employees.map((employee, index) =>{
+          return (<Employee
+            name={employee.name}
+            cijena={employee.cijena}
+            tjedno={employee.tjedno}
+            odstupanja={employee.odstupanja}
+            satnica={employee.satnica}
+            key={index} 
+            index={index}
+            app={this}/>)
+        })
+      )
+    }
+  }
+
+  printTest(thing){
+    // TODO: somehow add them to the graph
+    console.log(thing.props.name + " - index: " + thing.props.index)
   }
 
   handleSubmit(e){
