@@ -1,2 +1,2 @@
 # satnica
-Web sučelje za računanje tjedne i mjesečne satnice zaposlenika sa grafičkim prikazom podataka
+Ovaj branch je buildan source koji heroku hosta
