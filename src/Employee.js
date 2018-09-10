@@ -46,7 +46,7 @@ class Employee extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <form>
+                <form id={"editingform-" + this.props.index}>
                   <div className="form-group">
                     <label htmlFor={"uredivanje-name-" + this.props.index} className="col-form-label">Ime:</label>
                     <input type="text" defaultValue={this.props.name} className="form-control" id={"uredivanje-name-" + this.props.index}></input>
@@ -71,7 +71,7 @@ class Employee extends Component {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Odustani</button>
-                <button type="button" className="btn btn-primary" onClick={this.handleSave} data-dismiss="modal">Spremi</button>
+                <button type="submit" className="btn btn-primary" form={"editingform-" + this.props.index} onClick={this.handleSave} data-dismiss="modal">Spremi</button>
               </div>
             </div>
           </div>

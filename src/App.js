@@ -113,6 +113,7 @@ class App extends Component {
           }
         </div>
         <hr className="w-100"></hr>
+        <p className=" text-center text-muted">- graf će doći ovdje -</p>
       </div>
     );
   }
@@ -222,11 +223,13 @@ class App extends Component {
     this.employeeData[empobj.index] = empobj
     
     // clears the input fields
-    this.state.name = ''
-    this.state.cijena = ''
-    this.state.tjedno = ''
-    this.state.odstupanja = ''
-    this.state.satnica = ''
+    this.setState({
+      name: '',
+      cijena: '',
+      tjedno: '',
+      odstupanja: '',
+      satnica: ''
+    })
 
     this.forceUpdate()
   }
