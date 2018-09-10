@@ -47,10 +47,7 @@ body {
   content: ' dana u tjednu.'
 }
 
-.cijena::before {
-  content: 'Plaća: '
-}
-
+/* the ::before is in the index file, because of an encoding bug */
 .cijena::after {
   content: ' HRK/satu';
 }
@@ -59,10 +56,11 @@ body {
   content: 'Dnevna satnica: ';
 }
 
-.odstupanja::before {
-  content: 'Odrađeno: ';
+.satnica::after {
+  content: ' sati';
 }
 
+/* the ::before is in the index file, because of an encoding bug */
 .odstupanja::after {
   content: ' sati';
 }
